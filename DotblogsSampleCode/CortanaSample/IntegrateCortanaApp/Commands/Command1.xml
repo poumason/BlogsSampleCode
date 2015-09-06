@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet Name="BusControl_cn" xml:lang="zh-cn">
+    <AppName>公交车控制器</AppName>    
+    <Example>哪里有公交车</Example>
+    <Command Name="SearchWhereBusList">
+      <Example>哪里有公交车</Example>
+      <ListenFor RequireAppName="BeforePhrase">{where}有公交车</ListenFor>
+      <Feedback>搜寻{where}有公交车</Feedback>
+      <VoiceCommandService Target="com.poumason.uwp.VCBusService"/>
+    </Command>
+    <Command Name="CheckStartBusStation">
+      <Example>还有发车吗？</Example>
+      <ListenFor RequireAppName="ExplicitlySpecified">{builtin:AppName}还有发车吗</ListenFor>
+      <Feedback>确认中...</Feedback>
+      <VoiceCommandService Target="com.poumason.uwp.VCBusService"/>
+    </Command>
+    <Command Name="OpenApp">
+      <Example>开启公交车控制器</Example>
+      <ListenFor>开启公交车控制器</ListenFor>
+      <ListenFor RequireAppName="ExplicitlySpecified">显示[我]{builtin:AppName}的公交车</ListenFor>
+      <Feedback>开启中</Feedback>
+      <Navigate Target="showNow" />
+    </Command>
+    <PhraseList Label="where">
+      <Item>哪里</Item>
+      <Item>附近</Item>
+      <Item>最近</Item>
+    </PhraseList>
+  </CommandSet>
+</VoiceCommands>
