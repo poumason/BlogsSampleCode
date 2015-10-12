@@ -1,0 +1,32 @@
+# 這是註解
+[Oo]bj
+[Bb]in
+[Tt]emp
+AppPackages
+out
+BundleArtifacts
+*.user
+*.suo
+*.[Cc]ache
+*.bak
+*.log 
+*.DS_Store
+[Tt]est[Rr]esult*
+[Tt]humbs.db 
+_ReSharper.*
+*.resharper
+Ankh.NoLoad
+DTAR_08E86330_4835_4B5C_9E5A_61F37AE1A077_DTAR
+IntegrateCortanaApp_TemporaryKey.pfx
+ApplicationInsights.config
+ 
+# 如果你想忽略壓縮檔或一些大檔案
+*.7z
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.appx
+*.aapxupload
