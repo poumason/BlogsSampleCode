@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppWithOAuth", "AppWithOAuth\AppWithOAuth.csproj", "{D0EAAB85-CF3B-4BAB-A447-C6BEB30F3FD0}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveStreamSample", "AdaptiveMediaSourceSample\LiveStreamSample\LiveStreamSample.csproj", "{763951A5-6386-471A-A2F8-76E6BF4DAD16}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundAudioTask", "AdaptiveMediaSourceSample\BackgroundAudioTask\BackgroundAudioTask.csproj", "{7DFB07D5-0830-43C6-8217-28308CC6E829}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaAdvertisingSample", "MediaAdvertisingSample\MediaAdvertisingSample.csproj", "{875358CB-A644-426A-A815-27EC161FB72E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,6 +141,26 @@ Global
 		{7DFB07D5-0830-43C6-8217-28308CC6E829}.Release|x64.Build.0 = Release|x64
 		{7DFB07D5-0830-43C6-8217-28308CC6E829}.Release|x86.ActiveCfg = Release|x86
 		{7DFB07D5-0830-43C6-8217-28308CC6E829}.Release|x86.Build.0 = Release|x86
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|ARM.Build.0 = Debug|ARM
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|ARM.Deploy.0 = Debug|ARM
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|x64.ActiveCfg = Debug|x64
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|x64.Build.0 = Debug|x64
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|x64.Deploy.0 = Debug|x64
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|x86.ActiveCfg = Debug|x86
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|x86.Build.0 = Debug|x86
+		{875358CB-A644-426A-A815-27EC161FB72E}.Debug|x86.Deploy.0 = Debug|x86
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|Any CPU.ActiveCfg = Release|x86
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|ARM.ActiveCfg = Release|ARM
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|ARM.Build.0 = Release|ARM
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|ARM.Deploy.0 = Release|ARM
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|x64.ActiveCfg = Release|x64
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|x64.Build.0 = Release|x64
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|x64.Deploy.0 = Release|x64
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|x86.ActiveCfg = Release|x86
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|x86.Build.0 = Release|x86
+		{875358CB-A644-426A-A815-27EC161FB72E}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

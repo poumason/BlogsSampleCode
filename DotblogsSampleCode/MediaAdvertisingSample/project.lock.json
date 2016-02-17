@@ -3,6 +3,22 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "AdDuplexWin10/10.0.1.1": {
+        "compile": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        }
+      },
+      "Microsoft.AdMediator.Universal.AdDuplex/2.1.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -1569,6 +1585,22 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "AdDuplexWin10/10.0.1.1": {
+        "compile": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        }
+      },
+      "Microsoft.AdMediator.Universal.AdDuplex/2.1.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -3225,6 +3257,22 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "AdDuplexWin10/10.0.1.1": {
+        "compile": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        }
+      },
+      "Microsoft.AdMediator.Universal.AdDuplex/2.1.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -4853,6 +4901,22 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "AdDuplexWin10/10.0.1.1": {
+        "compile": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        }
+      },
+      "Microsoft.AdMediator.Universal.AdDuplex/2.1.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -6514,6 +6578,22 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "AdDuplexWin10/10.0.1.1": {
+        "compile": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        }
+      },
+      "Microsoft.AdMediator.Universal.AdDuplex/2.1.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -8142,6 +8222,22 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "AdDuplexWin10/10.0.1.1": {
+        "compile": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        }
+      },
+      "Microsoft.AdMediator.Universal.AdDuplex/2.1.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -9803,6 +9899,22 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "AdDuplexWin10/10.0.1.1": {
+        "compile": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/AdDuplex.winmd": {}
+        }
+      },
+      "Microsoft.AdMediator.Universal.AdDuplex/2.1.0": {
+        "compile": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll": {}
+        }
+      },
       "Microsoft.ApplicationInsights/1.0.0": {
         "compile": {
           "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
@@ -11432,6 +11544,32 @@
     }
   },
   "libraries": {
+    "AdDuplexWin10/10.0.1.1": {
+      "sha512": "LVNpWq/wGXlPeKugLgCajg8dkJAiPOWidQH6aW4xn+73/TaeX/fnXyOHagS0AlE7DJgsDcK45H2qHr70m3RXJw==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "AdDuplexWin10.nuspec",
+        "lib/uap10.0/AdDuplex.pri",
+        "lib/uap10.0/AdDuplex.winmd",
+        "lib/uap10.0/AdDuplex/InterstitialUserControl.xbf",
+        "lib/uap10.0/AdDuplex/Themes/Generic.xbf",
+        "lib/uap10.0/AdDuplex/Windows 10 SDK.xr.xml",
+        "package/services/metadata/core-properties/5283ef7dfbbb40cab04b89fedbc7592b.psmdcp"
+      ]
+    },
+    "Microsoft.AdMediator.Universal.AdDuplex/2.1.0": {
+      "sha512": "C9GcHjLh8dparM5pVLvriBV5kmBc38tzNpIFq3PfVVGrQgRbUGoTjR0Egzer1c+aMv0LYlBVMfzniUvhJPqgcg==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/uap10.0/Microsoft.AdMediator.Universal.AdDuplex.dll",
+        "Microsoft.AdMediator.Universal.AdDuplex.nuspec",
+        "package/services/metadata/core-properties/54d51b84d6d74068ac240144c537da78.psmdcp"
+      ]
+    },
     "Microsoft.ApplicationInsights/1.0.0": {
       "sha512": "HZ47/thX57SOuIivSvIbsR6L9CCb/Yt3IyB2i4KHmmNlf3DO+lqFwWIKDdbDNWKX+qh0Rg20/JSMPK0dwUsYYw==",
       "type": "Package",
@@ -14833,6 +14971,8 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "AdDuplexWin10 >= 10.0.1.1",
+      "Microsoft.AdMediator.Universal.AdDuplex >= 2.1.0",
       "Microsoft.ApplicationInsights >= 1.0.0",
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
