@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppWithOAuth", "AppWithOAuth\AppWithOAuth.csproj", "{D0EAAB85-CF3B-4BAB-A447-C6BEB30F3FD0}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundAudioTask", "AdaptiveMediaSourceSample\BackgroundAudioTask\BackgroundAudioTask.csproj", "{7DFB07D5-0830-43C6-8217-28308CC6E829}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaAdvertisingSample", "MediaAdvertisingSample\MediaAdvertisingSample.csproj", "{875358CB-A644-426A-A815-27EC161FB72E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevCenterAnalysisAPI", "DevCenterAnalysisAPI\DevCenterAnalysisAPI.csproj", "{8DD5B909-51C5-49C1-8723-4C829B8D288E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +163,22 @@ Global
 		{875358CB-A644-426A-A815-27EC161FB72E}.Release|x86.ActiveCfg = Release|x86
 		{875358CB-A644-426A-A815-27EC161FB72E}.Release|x86.Build.0 = Release|x86
 		{875358CB-A644-426A-A815-27EC161FB72E}.Release|x86.Deploy.0 = Release|x86
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Debug|ARM.Build.0 = Debug|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Debug|x64.Build.0 = Debug|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Debug|x86.Build.0 = Debug|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Release|ARM.Build.0 = Release|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Release|x64.ActiveCfg = Release|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Release|x64.Build.0 = Release|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Release|x86.ActiveCfg = Release|Any CPU
+		{8DD5B909-51C5-49C1-8723-4C829B8D288E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
