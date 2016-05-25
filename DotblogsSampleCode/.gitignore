@@ -30,3 +30,4 @@ ApplicationInsights.config
 *.zip
 *.appx
 *.aapxupload
+*.pfx

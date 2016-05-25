@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="TitleBarSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TitleBarSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <RadioButton GroupName="ColorSet" x:Name="UseCustomColor" Click="RadioButton_Click">
+                <TextBlock Text="change title bar color" />
+            </RadioButton>
+            <RadioButton IsChecked="True" x:Name="UseStandardColors" GroupName="ColorSet" Click="RadioButton_Click">
+                <TextBlock Text="Use default" />
+            </RadioButton>
+            <RadioButton x:Name="UseExtenTitleBar" GroupName="ColorSet" Click="RadioButton_Click">
+                <TextBlock Text="Use Custom title bar" />
+            </RadioButton>
+        </StackPanel>
+        <!--<Grid Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Width="50" Height="50" 
+              Background="{ThemeResource SystemAccentColor}" />-->
+    </Grid>
+</Page>
