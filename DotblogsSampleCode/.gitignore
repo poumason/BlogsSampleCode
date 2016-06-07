@@ -19,7 +19,7 @@ Ankh.NoLoad
 DTAR_08E86330_4835_4B5C_9E5A_61F37AE1A077_DTAR
 IntegrateCortanaApp_TemporaryKey.pfx
 ApplicationInsights.config
-[P]packages
+[Pp]ackages
  
 # 如果你想忽略壓縮檔或一些大檔案
 *.7z
