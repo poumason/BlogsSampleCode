@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:control="using:EmotionAPISample.Views">
+    <Style TargetType="control:FaceRectangleControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="control:FaceRectangleControl">
+                    <Border BorderBrush="#FF4cc9b4" BorderThickness="3" Background="Transparent"
+                            Width="{Binding FaceRectangle.Width}" Height="{Binding FaceRectangle.Height}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

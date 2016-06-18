@@ -32,3 +32,5 @@ ApplicationInsights.config
 *.appx
 *.aapxupload
 *.pfx
+[P]packages
+*.user
