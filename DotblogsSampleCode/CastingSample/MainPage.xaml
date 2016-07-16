@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="CastingSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CastingSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Sample1, use MediaElement to casting to device" />
+            <MediaElement x:Name="player" Source="ms-appx:///Assets/Videos/kkbox_ja_adv.mp4" AreTransportControlsEnabled="True" Width="300" />
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <TextBlock Text="Sample2, use custom casting button"/>
+            <Button Click="Button_Click">
+                <FontIcon Glyph="&#xEC15;" x:Name="castingIcon" />
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="3">
+            <Button Content="Go to DialSenderPage" Click="OnGoToSenderPage" />
+            <Button Content="Go to DialRecevierPage" Click="OnGoToReceiverPage" />
+        </StackPanel>
+    </Grid>
+</Page>
