@@ -1,12 +1,18 @@
-﻿using System;
+﻿using ScreenCasting.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
+using Windows.Devices.Enumeration;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Casting;
+using Windows.Media.DialProtocol;
 using Windows.UI;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -158,5 +164,127 @@ namespace CastingSample
         {
             Frame.Navigate(typeof(DialReceiverPage), null);
         }
+
+        private void OnProjectionClick(object sender, RoutedEventArgs e)
+        {
+            player.Pause();
+            if (devicePicker == null)
+            {
+                devicePicker = new DevicePicker();
+                devicePicker.Filter.SupportedDeviceSelectors.Add(ProjectionManager.GetDeviceSelector());
+                devicePicker.DevicePickerDismissed += DevicePicker_DevicePickerDismissed;
+                devicePicker.DeviceSelected += DevicePicker_DeviceSelected;
+                devicePicker.DisconnectButtonClicked += DevicePicker_DisconnectButtonClicked;
+            }
+            // 從按下的 button 出現 picker 内容
+            Button btn = sender as Button;
+            GeneralTransform transform = btn.TransformToVisual(Window.Current.Content as UIElement);
+            Point pt = transform.TransformPoint(new Point(0, 0));
+            devicePicker.Show(new Rect(pt.X, pt.Y, btn.ActualWidth, btn.ActualHeight), Windows.UI.Popups.Placement.Above);
+        }
+
+        private async void DevicePicker_DisconnectButtonClicked(DevicePicker sender, DeviceDisconnectButtonClickedEventArgs args)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                // 關閉新建立的 view
+                projectionInstance.Content.StopProjection();
+
+                //Update the display status for the selected device.
+                sender.SetDisplayStatus(args.Device, "Disconnecting", DevicePickerDisplayStatusOptions.ShowProgress);
+
+                //Update the display status for the selected device.
+                sender.SetDisplayStatus(args.Device, "Disconnected", DevicePickerDisplayStatusOptions.None);
+
+                // Set the active device variables to null
+                activeDevice = null;
+            });
+        }
+
+        private async void DevicePicker_DeviceSelected(DevicePicker sender, DeviceSelectedEventArgs args)
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+            {
+                // 更新 picker 上設備的 status
+                sender.SetDisplayStatus(args.SelectedDevice, "connecting", DevicePickerDisplayStatusOptions.ShowProgress);
+
+                // 取得目前選到設備的資訊
+                activeDevice = args.SelectedDevice;
+
+                // 現在 view 的 Id 與 CoreDispatcher
+                int currentViewId = ApplicationView.GetForCurrentView().Id;
+                CoreDispatcher currentDispatcher = Window.Current.Dispatcher;
+
+                // 建立新的 view,
+                if (projectionInstance.ProjectionViewPageControl == null)
+                {
+                    await CoreApplication.CreateNewView().Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    {
+                        // 建立新 viewe 的生命管理器
+                        projectionInstance.ProjectionViewPageControl = ViewLifetimeControl.CreateForCurrentView();
+                        projectionInstance.MainViewId = currentViewId;
+
+                        var rootFrame = new Frame();
+                        rootFrame.Navigate(typeof(ProjectionPage), projectionInstance);
+
+                        // 這裏的 Window 代表是新建立這個 view 的 Window
+                        // 但是要等到呼叫 ProjectionManager.StartProjectingAsync 才會顯示
+                        Window.Current.Content = rootFrame;
+                        Window.Current.Activate();
+                    });
+                }
+
+                // 直接切換到指定的 view id
+                //bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(projectionInstance.ProjectionViewPageControl.Id);
+
+                // 通知要使用新的 view
+                projectionInstance.ProjectionViewPageControl.StartViewInUse();
+
+                try
+                {
+                    txtViewId.Text = $"{projectionInstance.ProjectionViewPageControl.Id}, {currentViewId}";
+                    await ProjectionManager.StartProjectingAsync(projectionInstance.ProjectionViewPageControl.Id, currentViewId, activeDevice);
+
+                    player.Pause();
+
+                    sender.SetDisplayStatus(args.SelectedDevice, "connected", DevicePickerDisplayStatusOptions.ShowDisconnectButton);
+                }
+                catch (Exception ex)
+                {
+                    sender.SetDisplayStatus(args.SelectedDevice, ex.Message, DevicePickerDisplayStatusOptions.ShowRetryButton);
+                    if (ProjectionManager.ProjectionDisplayAvailable == false)
+                    {
+                        throw;
+                    }
+                }
+            });
+        }
+
+        private async void DevicePicker_DevicePickerDismissed(DevicePicker sender, object args)
+        {
+            // 代表用戶沒有選擇
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                player.Play();
+            });
+        }
+
+        DevicePicker devicePicker;
+        DeviceInformation activeDevice;
+        ProjectionBroker projectionInstance = new ProjectionBroker();
+
+        private void OnGoToCombinePage(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CombinePage), null);
+        }
+    }
+
+    public class ProjectionBroker
+    {
+        public int MainViewId { get; set; }
+
+        public ViewLifetimeControl ProjectionViewPageControl { get; set; }
+
+        public ProjectionPage Content { get; set; }
     }
 }

@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="CastingSample.CombinePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CastingSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+       
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Sample5, use Combine button"/>
+            <Button Content="Combine Video to other screen" Click="OnCombinePickerClick" />
+        </StackPanel>
+        
+        <MediaElement Grid.Row="1" x:Name="player" Source="ms-appx:///Assets/Videos/kkbox_ja_adv.mp4" AreTransportControlsEnabled="True" Width="300" />
+
+    </Grid>
+</Page>

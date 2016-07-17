@@ -13,6 +13,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1">
             <TextBlock Text="Sample1, use MediaElement to casting to device" />
@@ -25,8 +27,20 @@
             </Button>
         </StackPanel>
         <StackPanel Grid.Row="3">
+            <TextBlock Text="Sample3, use Dial proectol button"/>
             <Button Content="Go to DialSenderPage" Click="OnGoToSenderPage" />
             <Button Content="Go to DialRecevierPage" Click="OnGoToReceiverPage" />
+
+            <Button Content="Projection Video to other screen" Click="OnProjectionClick" />
+            <TextBox x:Name="txtViewId" />
+        </StackPanel>
+        <StackPanel Grid.Row="4">
+            <TextBlock Text="Sample4, use ProjectionManager button"/>
+            <Button Content="Projection Video to other screen" Click="OnProjectionClick" />
+        </StackPanel>
+        <StackPanel Grid.Row="5">
+            <TextBlock Text="Sample5, use Combine button"/>
+            <Button Content="Combine Video to other screen" Click="OnGoToCombinePage" />
         </StackPanel>
     </Grid>
 </Page>
