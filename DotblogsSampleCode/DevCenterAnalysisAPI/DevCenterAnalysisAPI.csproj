@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\AccessTokenObject.cs" />
+    <Compile Include="Data\APIType.cs" />
     <Compile Include="Data\ReviewData.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
