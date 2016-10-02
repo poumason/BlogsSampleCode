@@ -13,3 +13,4 @@
 * [UWP - 使用 AdaptiveMediaSource 整合 HLS] (https://dotblogs.com.tw/pou/2015/10/09/153525)
 * [UWP - 操作 Title Bar] (https://dotblogs.com.tw/pou/2016/05/22/110150)
 * [UWP - Casting Technologies - 1 & 2] (https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/CastingSample)
+* [UWP - Background Media Player 開發教學] (https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/BackgroundMediaPlayerSample/SingleBackgroundMediaPlayer)
