@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -26,14 +27,14 @@ namespace DevCenterAnalysisAPI
             GetReviewReport(token);
         }
 
-        string tenantId = "";
-        string clientId = "";
-        string clientSecret = "";
-
-        string scope = "https://manage.devcenter.microsoft.com";
+        const string scope = "https://manage.devcenter.microsoft.com";
 
         private string GetDevCenterAccessToken()
         {
+            string tenantId = WebConfigurationManager.AppSettings["TenantId"];
+            string clientId = WebConfigurationManager.AppSettings["ClientId"];
+            string clientSecret = WebConfigurationManager.AppSettings["ClientSecret"];
+
             string tokenEndpoint = string.Format("https://login.microsoftonline.com/{0}/oauth2/token", tenantId);
             using (WebClient client = new WebClient())
             {
@@ -93,6 +94,25 @@ namespace DevCenterAnalysisAPI
                 client.Encoding = Encoding.UTF8;
                 string json = client.DownloadString(link);
                 var reviewData = JsonConvert.DeserializeObject<AnalysisData<ReviewData>>(json);                
+            }
+        }
+
+        protected void OnGetAppAcquisitions_Click(object sender, EventArgs e)
+        {
+            string token = Application["access_token"]?.ToString();
+            const string url = "https://manage.devcenter.microsoft.com/v1.0/my/analytics/appacquisitions";
+
+            string queryStr = "applicationId=" + "9nblggh5f25p" +
+                             "&startDate=" + "2016/11/01" +
+                             "&endDate=" + "2016/11/30";
+            //"&filter=" + "contains(reviewText,'查詢') and contains(reviewText,'錯誤')";
+            using (WebClient client = new WebClient())
+            {
+                string link = string.Format("{0}?{1}", url, queryStr);
+                client.Headers.Add("Authorization", string.Format("Bearer {0}", token));
+                client.Encoding = Encoding.UTF8;
+                string json = client.DownloadString(link);
+                var reviewData = JsonConvert.DeserializeObject<AnalysisData<ReviewData>>(json);
             }
         }
     }

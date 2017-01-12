@@ -9,7 +9,16 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
+    <table>
+        <tr>
+            <td>App Id</td>
+            <td><asp:TextBox runat="server" ID="txtAppId" /></td>
+        </tr>
+        <tr>
+            <td>app acquisitions</td>
+            <td><asp:Button runat="server" Text="Get app acquisitions" OnClick="OnGetAppAcquisitions_Click" /></td>
+        </tr>
+    </table>
     </div>
     </form>
 </body>
