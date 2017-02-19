@@ -103,6 +103,8 @@
     <Compile Include="Google\GoogleSignInAPI.cs" />
     <Compile Include="LINE\LINEAccessToken.cs" />
     <Compile Include="LINE\LINELoginAPI.cs" />
+    <Compile Include="LINE\ProfileData.cs" />
+    <Compile Include="LINE\SocialAPI.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

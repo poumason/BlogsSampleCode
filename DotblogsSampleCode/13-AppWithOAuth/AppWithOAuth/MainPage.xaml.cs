@@ -87,7 +87,14 @@ namespace AppWithOAuth
             // 2. convert string to AccessToken object
             DataContractJsonSerializer tJsonSerial = new DataContractJsonSerializer(typeof(LINEAccessToken));
             MemoryStream tMS = new MemoryStream(Encoding.UTF8.GetBytes(accessTokenJson));
-            LINEAccessToken accesstoken = tJsonSerial.ReadObject(tMS) as LINEAccessToken;           
+            LINEAccessToken accesstoken = tJsonSerial.ReadObject(tMS) as LINEAccessToken;
+
+            var result = await SocialAPI.GetProfile(accesstoken.access_token);
+
+            tblUserName.Text = result.displayName;
+            var bitmapImage = new BitmapImage();
+            bitmapImage.UriSource = new Uri(result.pictureUrl);
+            imgUserPicture.Source = bitmapImage;
         }
     }
 }
