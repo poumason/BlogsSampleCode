@@ -28,9 +28,20 @@
             <TextBlock Text="LINE" />
             <Border BorderThickness="2" BorderBrush="#FF00C300">
                 <StackPanel>
-                    <Button Content="LINE Sign-In" Click="OnLINESignInAPIClick" />
-                    <TextBlock x:Name="txtLINEResult" FontSize="17" Visibility="Collapsed" />
-                    <Image x:Name="imgLINE" Width="300" Height="300" Visibility="Collapsed" />
+                    <StackPanel>
+                        <Button Content="LINE Sign-In" Click="OnLINESignInAPIClick" />
+                        <TextBlock x:Name="txtLINEResult" FontSize="17" Visibility="Collapsed" />
+                        <Image x:Name="imgLINE" Width="300" Height="300" Visibility="Collapsed" />
+                    </StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="tblUserName" />
+                            <Image x:Name="imgUserPicture" />
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </Border>
         </StackPanel>

@@ -20,3 +20,4 @@
 * [12-DevCenterAnalysisAPI] (https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/12-DevCenterAnalysisAPI/DevCenterAnalysisAPI) [UWP - 搭配 Azure AD Application 取得 App 分析資料] (https://dotblogs.com.tw/pou/2016/03/03/012638)
 * [13-AppWithOAuth] (https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/13-AppWithOAuth/AppWithOAuth) [UWP - 整合 Google Sign-In 與 Twitter Sign-In API](http://www.dotblogs.com.tw/pou/archive/2015/08/23/153188.aspx)
 * [14-InAppOnsSample] (https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/14-InAppOnsSample/InAppOnsSample) [UWP - in-app product purchases] (https://dotblogs.com.tw/pou/2016/08/01/210507)
+* [15-AudioRecordSample] (https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/15-AudioRecordSample/AudioRecordSample) [UWP - 利用 Bing Speech API 做 Speech to Text ] (https://dotblogs.com.tw/pou/2017/03/18/125947)
