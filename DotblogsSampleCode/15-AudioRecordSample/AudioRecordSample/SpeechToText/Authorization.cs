@@ -9,7 +9,7 @@ namespace AudioRecordSample
         /// <summary>
         /// Bing Speech API subscription key
         /// </summary>
-        private const string subscriptionKey = "";  // {your subscription key}
+        private const string subscriptionKey = "{your subscription key}";
 
         /// <summary>
         /// Authenticate Uri
