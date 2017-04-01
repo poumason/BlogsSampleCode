@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AudioRecordSample.LUISAPI;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,6 +58,17 @@ namespace AudioRecordSample
             }
         }
 
+        private bool? isUseLUISAPI = false;
+        public bool? IsUseLUISAPI
+        {
+            get { return isUseLUISAPI; }
+            set
+            {
+                isUseLUISAPI = value;
+                NotifyPropertyChanged("IsUseLUISAPI");
+            }
+        }
+
         public List<string> Languages { get; private set; }
 
         private bool isRecording = false;
@@ -92,7 +104,7 @@ namespace AudioRecordSample
             capture.Failed += Capture_Failed;
 
             buffer = new InMemoryRandomAccessStream();
-            
+
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
@@ -107,6 +119,8 @@ namespace AudioRecordSample
         {
             isRecording = false;
         }
+
+        int i = 0;
 
         private void Timer_Tick(object sender, object e)
         {
@@ -127,17 +141,24 @@ namespace AudioRecordSample
                 BingSpeechService service = new BingSpeechService(translateLanguage);
                 await service.Initialization();
 
-                TranslateResult = await service.SendAudioToAPIAsync(audio);
+                var response = await service.SendAudioToAPIAsync(audio);
 
-                var jsonResult = JsonConvert.DeserializeObject<SpeechToTextResultData>(translateResult);
+                var jsonResult = JsonConvert.DeserializeObject<SpeechToTextResultData>(response);
 
                 if (jsonResult.Header.Status == "success")
                 {
-                    TranslateResult = jsonResult.Header.Name.Trim();
-                    //string keyword = jsonResult.Header.Name.Trim();
-                    //MusicLuisService luisService = new MusicLuisService();
+                    string resultWord = jsonResult.Header.Name.Trim();
+                    TranslateResult = resultWord;
 
-                    //TranslateResult += await luisService.InvokeAPI(keyword);
+                    if (IsUseLUISAPI == true)
+                    {
+                        MusicLuisService luisService = new MusicLuisService();
+                        TranslateResult += "\r\n" + await luisService.InvokeAPI(resultWord);
+                    }
+                }
+                else
+                {
+                    TranslateResult = response;
                 }
             }
             catch (Exception ex)
@@ -183,7 +204,7 @@ namespace AudioRecordSample
             {
                 return;
             }
-            
+
             // 開始錄音
             await capture.StartRecordToStreamAsync(MediaEncodingProfile.CreateWav(AudioEncodingQuality.Auto), buffer);
 
@@ -200,7 +221,7 @@ namespace AudioRecordSample
 
             // 停止錄音
             await capture.StopRecordAsync();
-            
+
             // 轉成 IRandomAccessStream
             IRandomAccessStream audio = buffer.CloneStream();
 

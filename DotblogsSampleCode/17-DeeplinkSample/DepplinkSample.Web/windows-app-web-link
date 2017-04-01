@@ -1,0 +1,7 @@
+﻿[
+  {
+    "packageFamilyName": "5a578a94-4456-40e4-ac47-7ce11352856b_s1mb6h805jdtj",
+    "paths": [ "/en/*", "/tw/*", "/cn/*" ],
+    "excludePaths": [ "/en/food/*", "/tw/food", "/cn/food/" ]
+  }
+]
