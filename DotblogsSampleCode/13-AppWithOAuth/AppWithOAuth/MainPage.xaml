@@ -44,6 +44,13 @@
                     </Grid>
                 </StackPanel>
             </Border>
+            <StackPanel>
+                <Button x:Name="AuthorizeDialogButton" Content="use AuthorizeDialog login Facebook" Click="OnAuthoirzeDialogClick" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="access token:" Margin="5,0" />
+                    <TextBlock x:Name="AccessTokenTextBlock" />
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

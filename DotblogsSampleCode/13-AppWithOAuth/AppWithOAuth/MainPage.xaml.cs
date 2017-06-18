@@ -1,6 +1,7 @@
 ﻿using AppWithOAuth.Google;
 using AppWithOAuth.LINE;
 using AppWithOAuth.Twitter;
+using AppWithOAuth.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +10,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Security.Authentication.Web;
@@ -95,6 +97,39 @@ namespace AppWithOAuth
             var bitmapImage = new BitmapImage();
             bitmapImage.UriSource = new Uri(result.pictureUrl);
             imgUserPicture.Source = bitmapImage;
+        }
+
+        private void OnAuthoirzeDialogClick(object sender, RoutedEventArgs e)
+        {
+            AccessTokenTextBlock.Text = string.Empty;
+
+            string scope = "public_profile,email";
+            string fbAppId = "{facebook app id}";
+            string appId = WebAuthenticationBroker.GetCurrentApplicationCallbackUri().OriginalString;
+            string request = $"https://www.facebook.com/v2.6/dialog/oauth?client_id={fbAppId}&redirect_uri={appId}&response_type=token&scope={scope}&display=popup";
+
+            OAuthDialog oauthdialog = new OAuthDialog();
+            oauthdialog.AuthorizeRedirectChanged += (o, a) =>
+            {
+                int idx = a.IndexOf("access_token");
+
+                if (idx > 0)
+                {
+                    string[] data = a.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries);
+                    Dictionary<string, string> returnData = data[1].Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)
+                                                                    .Select(part => part.Split('='))
+                                                                    .ToDictionary(split => split[0], split => split[1]);
+                    AccessTokenTextBlock.Text = returnData["access_token"];
+                }
+                else
+                {
+                    AccessTokenTextBlock.Text = a;
+                }
+            };
+
+            oauthdialog.AuthorizeUrl = request;
+
+            oauthdialog.Show();
         }
     }
 }

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>JavaScriptInvokeNativeSample</title>
+    <script type='text/javascript'>
+        function onInvokeNativeMethod() {
+            // invoke native method
+            external.onOpenNativeShareDialog("from javascript"); 
+        }
+
+        //window.alert = function (AlertMessage) {
+        //    window.external.notify(AlertMessage);
+        //};
+    </script>
+</head>
+<body>
+    <button type="button" onclick="onInvokeNativeMethod();">Invoke native method</button>
+    <p>This is a simple test page for testing how to intercept JavaScript alert in WebView. If you click on the Alert button on WebView With Script Injection, you will receive a notification sent by JavaScript alert. If you click on the Alert button on WebView Without Script Injection, you will not receive a notification.</p>
+    <input type="text" id="AlertMessageTextBox" />
+    <input type="button" onclick="Alert();" value="Alert!" />
+    <script type="text/javascript">
+        function Alert() {
+            window.alert(document.getElementById('AlertMessageTextBox').value);
+            document.getElementById('AlertMessageTextBox').value = "123";
+        }
+    </script>
+</body>
+</html>
