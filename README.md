@@ -22,3 +22,4 @@
 * [14-InAppOnsSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/14-InAppOnsSample/InAppOnsSample) [UWP - in-app product purchases](https://dotblogs.com.tw/pou/2016/08/01/210507)
 * [15-AudioRecordSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/15-AudioRecordSample/AudioRecordSample) [UWP - 利用 Bing Speech API 做 Speech to Text](https://dotblogs.com.tw/pou/2017/03/18/125947)
 * [17-DeeplinkSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/17-DeeplinkSample) [UWP - 使用 Deep link 串聯 web-to-app 的互動](https://dotblogs.com.tw/pou/2017/04/01/161116)
+* [19-JavaScriptInvokeNativeSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/19-JavaScriptInvokeNativeSample) [UWP - 加入 Windows Runtime Component 到 JavaScript context](https://dotblogs.com.tw/pou/2017/05/19/024137)
