@@ -21,7 +21,7 @@ namespace AppWithOAuth.UI
     public sealed class OAuthDialog : Control
     {
         /// <summary>
-        /// 處理 Redirect Uri 回傳的事件
+        /// handle Redirect Uri (ms-appx:// or other) events
         /// </summary>
         public event EventHandler<string> AuthorizeRedirectChanged;
 
@@ -133,7 +133,7 @@ namespace AppWithOAuth.UI
 
         private void WebViewControl_UnsupportedUriSchemeIdentified(WebView sender, WebViewUnsupportedUriSchemeIdentifiedEventArgs args)
         {
-            // 註冊處理 redirect uri 裏面給的 custome scheme, 例如： ms-app://{store id}
+            // handle custome scheme in the redirect uri, such as： ms-app://{store id}
             AuthorizeRedirectChanged?.Invoke(sender, args.Uri.OriginalString);
             args.Handled = true;
             Hide();
@@ -191,7 +191,7 @@ namespace AppWithOAuth.UI
         {
             if (Uri.TryCreate(AuthorizeUrl, UriKind.Absolute, out var authUri))
             {
-                // 抓出 OAuth URL 的 domain，並且去掉它所有的 cookies
+                // capture the domain of the OAuth URL, then clear all cookies
                 string targetUrl = $"{authUri.Scheme}://{authUri.Host}";
 
                 HttpBaseProtocolFilter filter = new HttpBaseProtocolFilter();
