@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-CortanaSample", "03-CortanaSample", "{E7557958-F0D0-4426-BD14-ED201442E7AB}"
 EndProject
@@ -88,6 +88,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptInvokeNativeSample", "19-JavaScriptInvokeNativeSample\JavaScriptInvokeNativeSample\JavaScriptInvokeNativeSample.csproj", "{8569548F-1CCA-45B4-9003-E3DBAA8658F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JavaScriptExternal", "19-JavaScriptInvokeNativeSample\JavaScriptExternal\JavaScriptExternal.csproj", "{9852E356-A9BD-4B26-BA78-193B552FB71B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20-StartupTaskSample", "20-StartupTaskSample", "{0ECD7C9C-D87A-4497-996E-891B62B9C18F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartupTaskSample", "20-StartupTaskSample\StartupTaskSample\StartupTaskSample.csproj", "{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -553,6 +557,26 @@ Global
 		{9852E356-A9BD-4B26-BA78-193B552FB71B}.Release|x64.Build.0 = Release|x64
 		{9852E356-A9BD-4B26-BA78-193B552FB71B}.Release|x86.ActiveCfg = Release|x86
 		{9852E356-A9BD-4B26-BA78-193B552FB71B}.Release|x86.Build.0 = Release|x86
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|ARM.ActiveCfg = Debug|ARM
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|ARM.Build.0 = Debug|ARM
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|ARM.Deploy.0 = Debug|ARM
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|x64.ActiveCfg = Debug|x64
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|x64.Build.0 = Debug|x64
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|x64.Deploy.0 = Debug|x64
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|x86.ActiveCfg = Debug|x86
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|x86.Build.0 = Debug|x86
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Debug|x86.Deploy.0 = Debug|x86
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|Any CPU.ActiveCfg = Release|x86
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|ARM.ActiveCfg = Release|ARM
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|ARM.Build.0 = Release|ARM
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|ARM.Deploy.0 = Release|ARM
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|x64.ActiveCfg = Release|x64
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|x64.Build.0 = Release|x64
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|x64.Deploy.0 = Release|x64
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|x86.ActiveCfg = Release|x86
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|x86.Build.0 = Release|x86
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -582,5 +606,9 @@ Global
 		{7A6E3C6F-50E3-4B89-B672-A38FD301C11E} = {C0110E0C-60C7-45A3-927C-81EFC2CD53F7}
 		{8569548F-1CCA-45B4-9003-E3DBAA8658F8} = {90C84AE1-D51C-4757-ADD4-E3BCAF40D9B5}
 		{9852E356-A9BD-4B26-BA78-193B552FB71B} = {90C84AE1-D51C-4757-ADD4-E3BCAF40D9B5}
+		{AD14BA42-6DEC-4CEC-971F-44AA890EFD84} = {0ECD7C9C-D87A-4497-996E-891B62B9C18F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5767223F-42B4-4C58-8F3C-7FA0AFF5CC3D}
 	EndGlobalSection
 EndGlobal
