@@ -8,7 +8,7 @@
 
 * [01-AdaptiveMediaSourceSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/01-AdaptiveMediaSourceSample) [UWP - 使用 AdaptiveMediaSource 整合 HLS](https://dotblogs.com.tw/pou/2015/10/09/153525)
 * [02-BackgroundMediaPlayerSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/02-BackgroundMediaPlayerSample/SingleBackgroundMediaPlayer) [UWP - 新 BackgroundMediaPlayback 架構](https://dotblogs.com.tw/pou/2016/06/09/011700)
-* [03-CortanaSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/03-CortanaSample) [UWP - Integration Cortana with your app] (https://dotblogs.com.tw/pou/2015/09/06/153304)
+* [03-CortanaSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/03-CortanaSample) [UWP - Integration Cortana with your app](https://dotblogs.com.tw/pou/2015/09/06/153304)
 * [04-ProjectOxford](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/04-ProjectOxford/EmotionAPISample) [UWP - Project Oxford 的 Emotion API](https://dotblogs.com.tw/pou/2016/06/02/085625)
 * [05-SurfaceDialSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/05-SurfaceDialSample/SurfaceDialSample) [簡單操作 Surface Dial](https://dotblogs.com.tw/pou/2016/12/10/103901)
 * [06-TimeClock](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/06-TimeClock/TimeClockApp)
