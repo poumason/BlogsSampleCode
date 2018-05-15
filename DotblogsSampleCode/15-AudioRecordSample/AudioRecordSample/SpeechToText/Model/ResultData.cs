@@ -4,31 +4,23 @@ namespace AudioRecordSample
 {
     public class ResultData
     {
-        /// <summary>
-        /// the scenario this recognition result came from.
-        /// </summary>
-        [JsonProperty("scenario")]
-        public string Scenario { get; set; }
-
-        /// <summary>
-        /// formatted recognition result. Profane terms are surrounded with <profanity> tags. 
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
 
         /// <summary>
         /// text of what was spoken. Profane terms are surrounded with <profanity> tags.
         /// </summary>
-        [JsonProperty("lexical")]
+        [JsonProperty("Lexical")]
         public string Lexical { get; set; }
 
-        [JsonProperty("confidence")]
+        [JsonProperty("Confidence")]
         public string Confidence { get; set; }
 
-        /// <summary>
-        /// HIGHCONF, MIDCONF, LOWCONF
-        /// </summary>
-        [JsonProperty("properties")]
-        public PropertiesData Properties { get; set; }
+        [JsonProperty("ITN")]
+        public string ITN { get; set; }
+
+        [JsonProperty("MaskedITN")]
+        public string MaskedITN { get; set; }
+
+        [JsonProperty("Display")]
+        public string Display { get; set; }
     }
 }
