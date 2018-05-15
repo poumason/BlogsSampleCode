@@ -23,3 +23,6 @@
 * [15-AudioRecordSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/15-AudioRecordSample/AudioRecordSample) [UWP - 利用 Bing Speech API 做 Speech to Text](https://dotblogs.com.tw/pou/2017/03/18/125947)
 * [17-DeeplinkSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/17-DeeplinkSample) [UWP - 使用 Deep link 串聯 web-to-app 的互動](https://dotblogs.com.tw/pou/2017/04/01/161116)
 * [19-JavaScriptInvokeNativeSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/19-JavaScriptInvokeNativeSample) [UWP - 加入 Windows Runtime Component 到 JavaScript context](https://dotblogs.com.tw/pou/2017/05/19/024137)
+* [20-StartupTaskSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/20-StartupTaskSample) [UWP - 把 App 加入到系統自動啓動 (startup)](http://poumason.blogspot.tw/2017/10/uwp-app-startup.html)
+* [21-XboxUWPSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/21-XboxUWPSample) [UWP - 開發 Xbox App 處理 XY navigation](http://poumason.blogspot.tw/2017/11/uwp-xbox-app-xy-navigation.html)
+* [22-UserActivitiesSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/22-UserActivitiesSample) [UWP - 操作 UserActivity 讓 Timeline 接續您的工作](http://poumason.blogspot.tw/2017/12/uwp-useractivity-timeline.html)
