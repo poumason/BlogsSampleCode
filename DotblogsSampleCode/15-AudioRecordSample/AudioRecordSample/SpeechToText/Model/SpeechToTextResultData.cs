@@ -1,21 +1,22 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AudioRecordSample
 {
     public class SpeechToTextResultData
     {
-        [JsonProperty("version")]
-        public string Version { get; set; }
+        [JsonProperty("RecognitionStatus")]
+        public string Status { get; set; }
 
-        [JsonProperty("header")]
-        public HeaderData Header { get; set; }
+        [JsonProperty("Offset")]
+        public long Offset { get; set; }
 
-        [JsonProperty("results")]
+        [JsonProperty("Duration")]
+        public long Duration { get; set; }
+
+        [JsonProperty("NBest")]
         public ResultData[] Results { get; set; }
+
+        [JsonProperty("DisplayText")]
+        public string DisplayText { get; set; }
     }
 }

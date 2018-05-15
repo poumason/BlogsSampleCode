@@ -70,6 +70,7 @@ namespace AudioRecordSample
         }
 
         public List<string> Languages { get; private set; }
+        public List<string> RecognitionModes { get; private set; }
 
         private bool isRecording = false;
         private MediaCapture capture;
@@ -77,10 +78,12 @@ namespace AudioRecordSample
         private DispatcherTimer timer;
         private DateTime recordStartTime;
         private string translateLanguage = string.Empty;
+        private string recognitionMode = string.Empty;
 
         public MainPageViewModel()
         {
             Languages = BingSpeechService.SupportLangages;
+            RecognitionModes = BingSpeechService.RecognitionModes;
         }
 
         public async Task Initialization()
@@ -138,22 +141,30 @@ namespace AudioRecordSample
         {
             try
             {
-                BingSpeechService service = new BingSpeechService(translateLanguage);
+                BingSpeechService service = new BingSpeechService(translateLanguage, recognitionMode);
                 await service.Initialization();
 
                 var response = await service.SendAudioToAPIAsync(audio);
 
                 var jsonResult = JsonConvert.DeserializeObject<SpeechToTextResultData>(response);
 
-                if (jsonResult.Header.Status == "success")
+                if (jsonResult.Status == "Success")
                 {
-                    string resultWord = jsonResult.Header.Name.Trim();
-                    TranslateResult = resultWord;
+                    string resultWord = jsonResult.Results.FirstOrDefault()?.Display;
 
-                    if (IsUseLUISAPI == true)
+                    if (string.IsNullOrEmpty(resultWord))
                     {
-                        MusicLuisService luisService = new MusicLuisService();
-                        TranslateResult += "\r\n" + await luisService.InvokeAPI(resultWord);
+                        TranslateResult += "\r\n" + "no result";
+                    }
+                    else
+                    {
+                        TranslateResult = resultWord;
+
+                        if (IsUseLUISAPI == true)
+                        {
+                            MusicLuisService luisService = new MusicLuisService();
+                            TranslateResult += "\r\n" + await luisService.InvokeAPI(resultWord);
+                        }
                     }
                 }
                 else
@@ -196,6 +207,14 @@ namespace AudioRecordSample
 
             // 記下要使用的語系
             translateLanguage = control.SelectedItem.ToString();
+        }
+
+        public void RecognitionModeSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox control = sender as ComboBox;
+
+            // 記下要使用的識別模式
+            recognitionMode = control.SelectedItem.ToString();
         }
 
         public async void StartRecord(object sender, RoutedEventArgs e)
