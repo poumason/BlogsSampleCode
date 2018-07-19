@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="RemoteSystemSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RemoteSystemSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" HorizontalScrollMode="Enabled">
+            <StackPanel>
+                <TextBlock Text="Discover" />
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Start discover devices" Click="{x:Bind ViewMode.OnStartDiscoverClick}" />
+                    <Button Content="Stop discover" Click="{x:Bind ViewMode.OnStopDiscoverClick}" Margin="5,0" />
+                </StackPanel>
+                <TextBlock Text="Discover_Action" />
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Launch Uri" Click="{x:Bind ViewMode.OnInvokeRemoteSystemByUriAsync}" />
+                    <Button Content="Invoke App Service" Click="{x:Bind ViewMode.OnInvokeRemoteSystemByAppServiceAsync}" Margin="5,0"  />
+                </StackPanel>
+                <TextBlock Text="Session" />
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Create Session" Click="{x:Bind ViewMode.OnCreateRemoteSystemSessionClick}" />
+                    <Button Content="Start discover sessions" Click="{x:Bind ViewMode.OnDescoverSessionAsync}" Margin="5,0"  />
+                    <Button Content="Send Message" Click="{x:Bind ViewMode.OnSendMessageToSessionClick}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Discovered Devices:" />
+            <ListView Grid.Row="1" ItemsSource="{Binding SystemList}" SelectionChanged="{x:Bind ViewMode.OnRemoteSystemsListViewSelectionChanged}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayName}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBlock Grid.Row="2" Text="Discovered Sessions:" />
+            <ListView Grid.Row="3" ItemsSource="{Binding AvaiableSessionsList}" SelectionChanged="{x:Bind ViewMode.OnJoinSessionSelectChangedAsync}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayName}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <TextBlock Grid.Row="2" VerticalAlignment="Bottom" Text="{x:Bind ViewMode.Log, Mode=OneWay}" />
+    </Grid>
+</Page>

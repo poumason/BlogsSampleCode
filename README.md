@@ -28,3 +28,5 @@
 * [22-UserActivitiesSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/22-UserActivitiesSample) [UWP - 操作 UserActivity 讓 Timeline 接續您的工作](http://poumason.blogspot.tw/2017/12/uwp-useractivity-timeline.html)
 * [23-OAuthBotAppSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/23-OAuthBotAppSample) [Cortana Skill - 搭配 OAuth 驗證](http://poumason.blogspot.com/2017/07/cortana-skill-oauth.html)
 * [24-B2BMSIAPStoreAPISample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/24-B2BMSIAPStoreAPISample) [UWP - B2B 確認 In-app 購物記錄](http://poumason.blogspot.com/2018/06/uwp-b2b-in-app.html)
+* [25-25-AppServiceSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/25-AppServiceSample) [UWP - 介紹 App Service 與新功能 ](http://poumason.blogspot.com/2018/07/app-service_14.html)
+* [26-RemoteSystemSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/26-RemoteSystemSample) [UWP - 介紹 Project Rome]()
