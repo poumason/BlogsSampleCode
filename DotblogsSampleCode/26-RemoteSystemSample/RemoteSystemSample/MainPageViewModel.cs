@@ -7,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Json;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.AppService;
 using Windows.Foundation.Collections;
@@ -55,6 +54,7 @@ namespace RemoteSystemSample
         public MainPageViewModel(CoreDispatcher dispatcher)
         {
             devicesList = new ObservableCollection<RemoteSystem>();
+            sessionList = new ObservableCollection<RemoteSystemSessionInfo>();
             this.dispatcher = dispatcher;
         }
 
@@ -229,6 +229,26 @@ namespace RemoteSystemSample
         #endregion
 
         #region RemoteSystemSession
+        private RemoteSystemSessionInvitationListener invitationListener;
+
+        public void OnSubscribeAndHandleInvoke(object sender, RoutedEventArgs args)
+        {
+            invitationListener = new RemoteSystemSessionInvitationListener();
+            // 註冊處理來自其他 RemoteSystem 發出的 RemoteSession 邀請
+            invitationListener.InvitationReceived += async (s, e) =>
+            {
+                // 未加入前，是利用 RemoteSystemInfo 做 JoinAsync()
+                RemoteSystemSessionJoinResult joinResult = await e.Invitation.SessionInfo.JoinAsync();
+
+                if (joinResult.Status == RemoteSystemSessionJoinStatus.Success)
+                {
+                    // 注冊訊息通道做資料傳遞
+                    RegistMessageChannel(currentSession, currentSession.DisplayName);
+                    // 註冊有哪些參與者加入或離開
+                    SubscribeParticipantWatcher(currentSession);
+                }
+            };
+        }
 
         public async void OnCreateRemoteSystemSessionClick(object sender, RoutedEventArgs e)
         {
@@ -247,6 +267,7 @@ namespace RemoteSystemSample
 
             sessionController.JoinRequested += SessionController_JoinRequested;
 
+            // 建立一個 Remote Session
             RemoteSystemSessionCreationResult result = await sessionController.CreateSessionAsync();
 
             if (result.Status == RemoteSystemSessionCreationStatus.Success)
@@ -254,10 +275,13 @@ namespace RemoteSystemSample
                 currentSession = result.Session;
                 currentSession.Disconnected += (obj, args) =>
                 {
+                    // 代表從該 Session 離線了
                     Debug.WriteLine($"session_disconnected: {args.Reason.ToString()}");
                 };
 
-                RegistMessageChannel();
+                RegistMessageChannel(currentSession, currentSession.DisplayName);
+                // 註冊有哪些參與者加入或離開
+                SubscribeParticipantWatcher(currentSession);
 
                 if (currentRemoteSystem != null)
                 {
@@ -296,35 +320,55 @@ namespace RemoteSystemSample
             deferral.Complete();
         }
 
-        public async void OnDescoverSessionAsync(object sender, RoutedEventArgs e)
+        public void OnDescoverSessionAsync(object sender, RoutedEventArgs e)
         {
             if (sessionWatcher != null)
             {
                 return;
             }
 
-            // create a watcher for remote system sessions
+            // 建立 Watcher 來查看有哪些 Sessions 被建立或是刪除
             sessionWatcher = RemoteSystemSession.CreateWatcher();
 
-            // register a handler for the "added" event
-            sessionWatcher.Added += async (s, a) => {
-
-                // get a reference to the info about the discovered session
+            sessionWatcher.Added += (s, a) => {                
+                // 將找到的 RemoteSystemInfo 加入 UI 顯示
                 RemoteSystemSessionInfo sessionInfo = a.SessionInfo;
 
-                // Optionally update the UI with the sessionInfo.DisplayName and 
-                // sessionInfo.ControllerDisplayName strings. 
-                // Save a reference to this RemoteSystemSessionInfo to use when the
-                // user selects this session from the UI
-                //...
-
-                var updateTask = dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                var addedTask = dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     sessionList.Add(sessionInfo);
                 });
             };
 
-            // Begin watching
+            sessionWatcher.Removed += (s, a) => {
+                // 將已經結束的 session 從 UI 移除
+                var removedSession = a.SessionInfo;
+                var exist = sessionList.Where(x => x.ControllerDisplayName == removedSession.ControllerDisplayName && x.DisplayName == removedSession.DisplayName).FirstOrDefault();
+
+                if (exist!= null)
+                {
+                    var removedTask = dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        sessionList.Remove(exist);
+                    });
+                }
+            };
+
+            sessionWatcher.Updated += (s, a) => {
+                // 講更新的 RemoteSystemInfo 加入到 UI
+                var updatedSession = a.SessionInfo;
+                var exist = sessionList.Where(x => x.ControllerDisplayName == updatedSession.ControllerDisplayName && x.DisplayName == updatedSession.DisplayName).FirstOrDefault();
+
+                if (exist != null)
+                {
+                    var updatedTask = dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        sessionList.Remove(exist);
+                        sessionList.Add(updatedSession);
+                    });
+                }
+            };
+
             sessionWatcher.Start();
         }
 
@@ -335,6 +379,7 @@ namespace RemoteSystemSample
             
             if (session!= null)
             {
+                // 請求加入 session
                 var result = await session.JoinAsync();
                                 
                 Debug.WriteLine($"join {session.DisplayName}: {result.Status.ToString()}");
@@ -342,17 +387,26 @@ namespace RemoteSystemSample
                 if (result.Status == RemoteSystemSessionJoinStatus.Success)
                 {
                     this.currentSession = result.Session;
-                    RegistMessageChannel();
+                    // 注冊訊息通道做資料傳遞
+                    RegistMessageChannel(currentSession, currentSession.DisplayName);
+                    // 註冊有哪些參與者加入或離開
+                    SubscribeParticipantWatcher(currentSession);
                 }
             }
         }
 
         public void OnSendMessageToSessionClick(object sender, RoutedEventArgs e)
         {
+            //RegistMessageChannel();
+            var msg = new MessageData
+            {
+                Content = "test"
+            };
 
+            var task = SendMessageToParticipantsAsync(msg);
         }
 
-        private void RegistMessageChannel()
+        private void RegistMessageChannel(RemoteSystemSession session, string channelName)
         {
             if (appMessageChannel != null)
             {
@@ -360,12 +414,30 @@ namespace RemoteSystemSample
                 appMessageChannel = null;
             }
 
-            appMessageChannel = new RemoteSystemSessionMessageChannel(currentSession, "test_channel");
+            appMessageChannel = new RemoteSystemSessionMessageChannel(session, channelName);
             appMessageChannel.ValueSetReceived += AppMessageChannel_ValueSetReceived;
         }
 
-        private async Task SendMessageToParticipantsAsync(object message)
+        private void AppMessageChannel_ValueSetReceived(RemoteSystemSessionMessageChannel sender, RemoteSystemSessionValueSetReceivedEventArgs args)
         {
+            ValueSet receivedMessage = args.Message;
+
+            if (receivedMessage != null)
+            {
+                MessageData msgData = new MessageData();
+                byte[] data = receivedMessage["Key"] as byte[];
+                using (MemoryStream ms = new MemoryStream(data))
+                {
+                    DataContractJsonSerializer ser = new DataContractJsonSerializer(msgData.GetType());
+                    msgData = ser.ReadObject(ms) as MessageData;
+                }
+
+                Log = msgData.Content;
+            }
+        }
+
+        private async Task SendMessageToParticipantsAsync(object message, RemoteSystemSessionParticipant participant = null)
+        {           
             using (var stream = new MemoryStream())
             {
                 new DataContractJsonSerializer(message.GetType()).WriteObject(stream, message);
@@ -373,13 +445,46 @@ namespace RemoteSystemSample
                 // Send message to all
                 ValueSet sentMessage = new ValueSet { ["Key"] = data };
                 // Send specific participants
-                await appMessageChannel.BroadcastValueSetAsync(sentMessage);
+
+                if (participant == null)
+                {
+                    await appMessageChannel.BroadcastValueSetAsync(sentMessage);
+                }
+                else
+                {
+                    await appMessageChannel.SendValueSetAsync(sentMessage, participant);
+                }
             }
         }
+        #endregion
 
-        private void AppMessageChannel_ValueSetReceived(RemoteSystemSessionMessageChannel sender, RemoteSystemSessionValueSetReceivedEventArgs args)
+        #region Participant
+        private RemoteSystemSessionParticipantWatcher participantWatcher;
+
+        public ObservableCollection<RemoteSystemSessionParticipant> Participants => watchedParticipants;
+        private ObservableCollection<RemoteSystemSessionParticipant> watchedParticipants;
+
+        private void SubscribeParticipantWatcher(RemoteSystemSession session)
         {
-            ValueSet receivedMessage = args.Message;
+            if (participantWatcher != null)
+            {
+                participantWatcher.Stop();
+            }
+
+            participantWatcher = null;
+
+            // 當加入或建立 RemoteSystemSession 之後，利用 ParticipantWatcher 來看有那些參與者
+            participantWatcher = session.CreateParticipantWatcher();
+
+            participantWatcher.Added += (s, a) => {
+                watchedParticipants.Add(a.Participant);
+            };
+
+            participantWatcher.Removed += (s, a) => {
+                watchedParticipants.Remove(a);
+            };
+
+            participantWatcher.Start();
         }
         #endregion
 
@@ -394,5 +499,10 @@ namespace RemoteSystemSample
                 Debug.WriteLine(ex);
             }
         }
+    }
+
+    public class MessageData
+    {
+        public string Content { get; set; }
     }
 }
