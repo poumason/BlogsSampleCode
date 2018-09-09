@@ -30,4 +30,4 @@
 * [24-B2BMSIAPStoreAPISample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/24-B2BMSIAPStoreAPISample) [UWP - B2B 確認 In-app 購物記錄](http://poumason.blogspot.com/2018/06/uwp-b2b-in-app.html)
 * [25-25-AppServiceSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/25-AppServiceSample) [UWP - 介紹 App Service 與新功能 ](http://poumason.blogspot.com/2018/07/app-service_14.html)
 * [26-RemoteSystemSample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/26-RemoteSystemSample) [UWP - 介紹 Project Rome](https://poumason.blogspot.com/2018/07/uwp-project-rome-1.html)
-* [27-PWASample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/26-PWASample) [PWA 操作 Windows Runtime APIs](http://poumason.blogspot.com/2018/09/pwa-windows-runtime-apis.html)
+* [27-PWASample](https://github.com/poumason/DotblogsSampleCode/tree/master/DotblogsSampleCode/27-PWASample) [PWA 操作 Windows Runtime APIs](http://poumason.blogspot.com/2018/09/pwa-windows-runtime-apis.html)
