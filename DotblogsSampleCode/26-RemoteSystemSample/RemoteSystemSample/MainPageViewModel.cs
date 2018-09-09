@@ -481,7 +481,7 @@ namespace RemoteSystemSample
             };
 
             participantWatcher.Removed += (s, a) => {
-                watchedParticipants.Remove(a);
+                watchedParticipants.Remove(a.Participant);
             };
 
             participantWatcher.Start();
