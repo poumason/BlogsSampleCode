@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,6 @@ namespace SingleBackgroundMediaPlayer
 {
     public class PlayerService : IDisposable
     {
-        public event EventHandler<MediaPlaybackState> StateChanged;
-
         private static PlayerService instance;
 
         private static object lockObject = new object();
@@ -104,7 +103,7 @@ namespace SingleBackgroundMediaPlayer
         private void PlaybackSession_PlaybackStateChanged(MediaPlaybackSession sender, object args)
         {
             CurrentState = sender.PlaybackState;
-            StateChanged?.Invoke(this, CurrentState);
+            Debug.WriteLine(sender);
         }
 
         private void CommandManager_PauseReceived(MediaPlaybackCommandManager sender, MediaPlaybackCommandManagerPauseReceivedEventArgs args)
