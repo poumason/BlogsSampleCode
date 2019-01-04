@@ -31,21 +31,17 @@
   </ItemGroup>
   <PropertyGroup>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
+    <EntryPointProjectUniqueName>..\..\02-BackgroundMediaPlayerSample\SingleBackgroundMediaPlayer\SingleBackgroundMediaPlayer.csproj</EntryPointProjectUniqueName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <ProjectGuid>7ef79d25-b44c-41b6-b778-00d87521798f</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
-  <PropertyGroup>
-    <ProjectGuid>235ab2f8-0717-428d-852f-bd3992e76fc2</ProjectGuid>
-    <TargetPlatformVersion>10.0.17763.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>WapProjSample_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <EntryPointProjectUniqueName>..\WPFAndUWPSample\WPFAndUWPSample.csproj</EntryPointProjectUniqueName>
-  </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="WapProjSample_TemporaryKey.pfx" />
+    <None Include="SMTCMergeApp_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\LockScreenLogo.scale-200.png" />
@@ -56,7 +52,8 @@
     <Content Include="Images\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WPFAndUWPSample\WPFAndUWPSample.csproj" />
+    <ProjectReference Include="..\..\02-BackgroundMediaPlayerSample\SingleBackgroundMediaPlayer\SingleBackgroundMediaPlayer.csproj" />
+    <ProjectReference Include="..\SMTCConsoleApp\SMTCConsoleApp.csproj" />
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
 </Project>

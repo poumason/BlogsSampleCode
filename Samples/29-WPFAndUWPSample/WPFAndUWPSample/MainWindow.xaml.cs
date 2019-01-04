@@ -1,4 +1,5 @@
-﻿using SingleBackgroundMediaPlayer;
+﻿using DesktopNotifications;
+using SingleBackgroundMediaPlayer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,10 +40,11 @@ namespace WPFAndUWPSample
             InitializeComponent();
         }
 
-        private void OnSendToastClick(object sender, RoutedEventArgs e)
+        private async void OnSendToastClick(object sender, RoutedEventArgs e)
         {
             SendToast();
-            UpdateTile();
+            //var task = UpdateTile();
+            await PinToStart();
         }
 
         private void OnRegistSMTCClick(object sender, RoutedEventArgs e)
@@ -122,10 +124,10 @@ namespace WPFAndUWPSample
             string content = "beautiful scenery";
             string image = "https://picsum.photos/360/180?image=104";
             string logo = "https://picsum.photos/64?image=883";
-
+            string launch = "action=viewConversation";
             string xmlString =
             $@"<toast><visual>
-       <binding template='ToastGeneric'>
+       <binding template='ToastGeneric' launch='{launch}'>
        <text>{title}</text>
        <text>{content}</text>
        <image src='{image}'/>
@@ -138,53 +140,40 @@ namespace WPFAndUWPSample
 
             ToastNotification toast = new ToastNotification(toastXml);
 
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+            //ToastNotificationManager.CreateToastNotifier().Show(toast);
+
+            DesktopNotificationManagerCompat.CreateToastNotifier().Show(toast);
         }
 
-        private async Task UpdateTile()
+        private async Task PinToStart()
         {
-            //// Create a tile update manager for the specified syndication feed.
-            //var updater = TileUpdateManager.CreateTileUpdaterForApplication();
-            //updater.EnableNotificationQueue(true);
-            //updater.Clear();
+            try
+            {
+                // Initialize the tile with required arguments
+                SecondaryTile tile = new SecondaryTile(
+                    "myTileId5391",
+                    "Display name",
+                    "myActivationArgs",
+                    new Uri("ms-appx:///Images/Square150x150Logo.png"),
+                    TileSize.Default);
 
-            //// Keep track of the number feed items that get tile notifications.
-            //int itemCount = 0;
+                // Assign the window handle
+                IInitializeWithWindow initWindow = (IInitializeWithWindow)(object)tile;
+                initWindow.Initialize(System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle);
 
-            //// Create a tile notification for each feed item.
-            //foreach (var item in feed.Items)
-            //{
-            //    XmlDocument tileXml = TileUpdateManager.GetTemplateContent(TileTemplateType.TileWideText03);
+                // Pin the tile
+                bool isPinned = await tile.RequestCreateAsync();
 
-            //    var title = item.Title;
-            //    string titleText = title.Text == null ? String.Empty : title.Text;
-            //    tileXml.GetElementsByTagName(textElementName)[0].InnerText = titleText;
+                // TODO: Update UI to reflect whether user can now either unpin or pin
+            }
+            catch (Exception ex)
+            {
 
-            //    // Create a new tile notification.
-            //    updater.Update(new TileNotification(tileXml));
-
-            //    // Don't create more than 5 notifications.
-            //    if (itemCount++ > 5) break;
-            //}
-
-            // Initialize the tile with required arguments
-            SecondaryTile tile = new SecondaryTile(
-                "myTileId5391",
-                "Display name",
-                "myActivationArgs",
-                new Uri("ms-appx:///Assets/Square150x150Logo.png"),
-                TileSize.Default);
-
-            // Assign the window handle
-            IInitializeWithWindow initWindow = (IInitializeWithWindow)(object)tile;
-            initWindow.Initialize(System.Diagnostics.Process.GetCurrentProcess().MainWindowHandle);
-
-            // Pin the tile
-            bool isPinned = await tile.RequestCreateAsync();
-
-            // TODO: Update UI to reflect whether user can now either unpin or pin
+            }
         }
 
+        // This interface definition is necessary because this is a non-universal
+        // app and we have transfer the hwnd for the window to the WinRT object.
         [ComImport]
         [Guid("3E68D4BD-7135-4D10-8018-9FB6D9F33FA1")]
         [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
