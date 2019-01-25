@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.106
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioRecordSample", "15-AudioRecordSample\AudioRecordSample\AudioRecordSample.csproj", "{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Debug|ARM.Build.0 = Debug|ARM
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Debug|ARM.Deploy.0 = Debug|ARM
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Debug|x64.ActiveCfg = Debug|x64
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Debug|x64.Build.0 = Debug|x64
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Debug|x64.Deploy.0 = Debug|x64
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Debug|x86.ActiveCfg = Debug|x86
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Debug|x86.Build.0 = Debug|x86
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Debug|x86.Deploy.0 = Debug|x86
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Release|ARM.ActiveCfg = Release|ARM
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Release|ARM.Build.0 = Release|ARM
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Release|ARM.Deploy.0 = Release|ARM
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Release|x64.ActiveCfg = Release|x64
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Release|x64.Build.0 = Release|x64
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Release|x64.Deploy.0 = Release|x64
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Release|x86.ActiveCfg = Release|x86
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Release|x86.Build.0 = Release|x86
+		{FCB5FB43-A731-4BD9-B68B-DE6A4412583F}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C85CD84-F5C3-44C9-8B5F-F3E99C41081C}
+	EndGlobalSection
+EndGlobal
