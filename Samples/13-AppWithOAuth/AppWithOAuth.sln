@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.106
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppWithOAuth", "13-AppWithOAuth\AppWithOAuth\AppWithOAuth.csproj", "{D0EAAB85-CF3B-4BAB-A447-C6BEB30F3FD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppWithOAuth", "AppWithOAuth\AppWithOAuth.csproj", "{D0EAAB85-CF3B-4BAB-A447-C6BEB30F3FD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

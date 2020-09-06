@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mp3WavConverter", "mp3WavConverter.csproj", "{3DE3BCA1-04E8-4633-B26E-031FC848EBA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DE3BCA1-04E8-4633-B26E-031FC848EBA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE3BCA1-04E8-4633-B26E-031FC848EBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE3BCA1-04E8-4633-B26E-031FC848EBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE3BCA1-04E8-4633-B26E-031FC848EBA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5532B848-3ED0-44F9-BBBB-B1F5FAA1F0EF}
+	EndGlobalSection
+EndGlobal
