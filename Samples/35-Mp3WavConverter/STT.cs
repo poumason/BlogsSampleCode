@@ -10,11 +10,13 @@ namespace mp3WavConverter
         [JsonIgnore]
         public string Display { get; set; }
 
+        [JsonIgnore]
         public double AudioLengthInSeconds { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public Segmentresult[] SegmentResults { get; set; }
 
+        [JsonIgnore]
         public List<WordData> Words { get; set; }
 
         public STT()
