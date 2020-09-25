@@ -16,61 +16,75 @@ namespace mp3WavConverter
     {
         static void Main(string[] args)
         {
-            string fileName = "科技島讀0719.json";
-            string transcriptFileName = "科技島讀0719_transcript.json";
-
-            var currentPath = Directory.GetCurrentDirectory();
-            var jsonFile = Path.Combine(currentPath, fileName);
-            var content = File.ReadAllText(jsonFile);
-
-            var result = JsonConvert.DeserializeObject<AzureBatchTranslationFile>(content);
-            var translateData = result.AudioFileResults.FirstOrDefault();
-
-            var sttObject = new STT();
-            sttObject.AudioLengthInSeconds = translateData.AudioLengthInSeconds;
-            sttObject.Display = translateData.CombinedResults[0].Display;
-
-            // only maxest Confidence
-            foreach (var segment in translateData.SegmentResults)
-            {
-                segment.NBest = new NbestData[] { segment.NBest.OrderByDescending(x => x.Confidence).First() };
-            }
-
-            sttObject.SegmentResults = translateData.SegmentResults;
-
-            string[] chineseSymbols = new string[] { "，", "。" };
-            Regex matchRegex = new Regex(@"\，|\。");
-
-            foreach (var segment in translateData.SegmentResults)
-            {
-                var nBest = segment.NBest.First();
-
-                // find symbol and previous word, combine it.
-                var matchs = matchRegex.Matches(nBest.Display);
-                var currentIndex = 0;
-                var rawContent = "";
-
-                foreach (var item in nBest.Words)
-                {
-                    currentIndex += item.Word.Length;
-                    rawContent += item.Word;
-                    var previousWord = matchs.Where(x => x.Index == currentIndex).FirstOrDefault();
-                    if (previousWord != null)
-                    {
-                        item.Word += previousWord.Value;
-                        rawContent += previousWord.Value;
-                        currentIndex += 1;
-                    }
-                }
-
-                sttObject.Words.AddRange(segment.NBest.First().Words);
-            }
-
-            var outputJson = JsonConvert.SerializeObject(sttObject);
-            File.WriteAllText(transcriptFileName, outputJson);
-            Console.WriteLine(translateData.SegmentResults);
+            //ConvertJsonSTT();
             //ConvertMp3ToWav();
         }
+
+        static void ConvertJsonSTT()
+        {
+            var currentPath = Directory.GetCurrentDirectory();
+            var inFolder = Path.Combine(currentPath, "source");
+            var outFolder = Path.Combine(currentPath, "destination");
+
+            var jsonFiles = Directory.GetFiles(inFolder, "*.json");
+            foreach (var fileItem in jsonFiles)
+            {
+                var content = File.ReadAllText(fileItem);
+
+                var result = JsonConvert.DeserializeObject<AzureBatchTranslationFile>(content);
+                var translateData = result.AudioFileResults.FirstOrDefault();
+
+                var sttObject = new STT();
+                sttObject.AudioLengthInSeconds = translateData.AudioLengthInSeconds;
+                sttObject.Display = translateData.CombinedResults[0].Display;
+
+                // only maxest Confidence
+                foreach (var segment in translateData.SegmentResults)
+                {
+                    segment.NBest = new NbestData[] { segment.NBest.OrderByDescending(x => x.Confidence).First() };
+                }
+
+                sttObject.SegmentResults = translateData.SegmentResults;
+
+                string[] chineseSymbols = new string[] { "，", "。" };
+                Regex matchRegex = new Regex(@"\，|\。");
+
+                foreach (var segment in translateData.SegmentResults)
+                {
+                    var nBest = segment.NBest.First();
+
+                    // find symbol and previous word, combine it.
+                    var matchs = matchRegex.Matches(nBest.Display);
+                    var currentIndex = 0;
+                    var rawContent = "";
+
+                    foreach (var item in nBest.Words)
+                    {
+                        currentIndex += item.Word.Length;
+                        rawContent += item.Word;
+                        var previousWord = matchs.Where(x => x.Index == currentIndex).FirstOrDefault();
+                        if (previousWord != null)
+                        {
+                            item.Word += previousWord.Value;
+                            rawContent += previousWord.Value;
+                            currentIndex += 1;
+                        }
+                    }
+
+                    sttObject.Words.AddRange(segment.NBest.First().Words);
+                }
+
+                var outputJson = JsonConvert.SerializeObject(sttObject);
+
+                var fileName = Path.GetFileName(fileItem);
+                var newFile = Path.Combine(outFolder, fileName);
+
+                File.WriteAllText(newFile, outputJson);
+
+                Console.WriteLine($"transcripted file: {fileName}");
+            }
+        }
+
 
         static void ConvertMp3ToWav()
         {
