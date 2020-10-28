@@ -1,4 +1,5 @@
-﻿using NAudio.Wave;
+﻿using mp3WavConverter.Custom;
+using NAudio.Wave;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,11 @@ namespace mp3WavConverter
             var outFolder = Path.Combine(currentPath, "destination");
 
             var jsonFiles = Directory.GetFiles(inFolder, "*.json");
+
+        }
+
+        static void ParseContentV2(string outFolder, string[] jsonFiles)
+        {
             foreach (var fileItem in jsonFiles)
             {
                 var content = File.ReadAllText(fileItem);
@@ -85,6 +91,78 @@ namespace mp3WavConverter
             }
         }
 
+        static void ParseContentV3(string outFolder, string[] jsonFiles)
+        {
+            foreach (var fileItem in jsonFiles)
+            {
+                var content = File.ReadAllText(fileItem);
+
+                var result = JsonConvert.DeserializeObject<SpeechToText>(content);
+
+                var transcriptObject = new Transcript();
+                transcriptObject.full_text = result.combinedRecognizedPhrases[1].display;
+
+                // only maxest Confidence
+                foreach (var segment in result.recognizedPhrases)
+                {
+                    segment.nBest = new Nbest[] { segment.nBest.OrderByDescending(x => x.confidence).First() };
+                }
+
+                string[] chineseSymbols = new string[] { "，", "。" };
+                Regex matchRegex = new Regex(@"\，|\。");
+
+                foreach (var segment in result.recognizedPhrases)
+                {
+                    var nBest = segment.nBest.First();
+
+                    // find symbol and previous word, combine it.
+                    var matchs = matchRegex.Matches(nBest.display);
+                    var currentIndex = 0;
+                    var rawContent = "";
+
+                    foreach (var item in nBest.words)
+                    {
+                        currentIndex += item.word.Length;
+                        rawContent += item.word;
+                        var previousWord = matchs.Where(x => x.Index == currentIndex).FirstOrDefault();
+                        if (previousWord != null)
+                        {
+                            item.word += previousWord.Value;
+                            rawContent += previousWord.Value;
+                            currentIndex += 1;
+                        }
+                    }
+
+                    var sentence = new Sentence();
+                    sentence.text = nBest.display;
+                    sentence.start_at_ms = ConvertTickToMilliseconds(segment.offsetInTicks);
+                    sentence.duration_ms = ConvertTickToMilliseconds(segment.durationInTicks);
+                    sentence.words.AddRange(nBest.words.Select(x => new Custom.TextUnit
+                    {
+                        text = x.word,
+                        start_at_ms = ConvertTickToMilliseconds(x.offsetInTicks),
+                        duration_ms = ConvertTickToMilliseconds(x.durationInTicks)
+                    }).ToList());
+
+                    transcriptObject.sentences.Add(sentence);
+                }
+
+                var outputJson = JsonConvert.SerializeObject(transcriptObject);
+
+                var fileName = Path.GetFileName(fileItem);
+                var newFile = Path.Combine(outFolder, fileName);
+
+                File.WriteAllText(newFile, outputJson);
+
+                Console.WriteLine($"transcripted file: {fileName}");
+            }
+        }
+
+        static int ConvertTickToMilliseconds(float tick)
+        {
+            var milliseconds = tick * 100 / 1000000;
+            return (int)milliseconds;
+        }
 
         static void ConvertMp3ToWav()
         {
@@ -99,7 +177,7 @@ namespace mp3WavConverter
             Console.WriteLine("finished");
         }
 
-        static void ConvertFiles (String sourcePath, String destPath)
+        static void ConvertFiles(String sourcePath, String destPath)
         {
             var mp3Files = Directory.GetFiles(sourcePath, "*.mp3");
 
@@ -124,7 +202,7 @@ namespace mp3WavConverter
                 {
                     WaveFileWriter.CreateWaveFile(outFile, reader);
                 }
-                
+
                 Console.WriteLine($"converted: {outFile}");
             }
         }
@@ -138,7 +216,7 @@ namespace mp3WavConverter
                 return;
             }
 
-            foreach(var filePath in files)
+            foreach (var filePath in files)
             {
                 if (File.Exists(filePath))
                 {
