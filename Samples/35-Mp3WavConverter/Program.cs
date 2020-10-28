@@ -28,7 +28,8 @@ namespace mp3WavConverter
             var outFolder = Path.Combine(currentPath, "destination");
 
             var jsonFiles = Directory.GetFiles(inFolder, "*.json");
-
+            //ParseContentV2(outFolder, jsonFiles);
+            //ParseContentV3(outFolder, jsonFiles);
         }
 
         static void ParseContentV2(string outFolder, string[] jsonFiles)
@@ -100,7 +101,7 @@ namespace mp3WavConverter
                 var result = JsonConvert.DeserializeObject<SpeechToText>(content);
 
                 var transcriptObject = new Transcript();
-                transcriptObject.full_text = result.combinedRecognizedPhrases[1].display;
+                transcriptObject.full_text = result.combinedRecognizedPhrases.Length > 2 ? result.combinedRecognizedPhrases[1].display : result.combinedRecognizedPhrases.First().display;
 
                 // only maxest Confidence
                 foreach (var segment in result.recognizedPhrases)
